@@ -1,0 +1,156 @@
+* {
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+body,
+html {
+    overflow-x: hidden;
+}
+
+main {
+    background-image: url(../assets/bg.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+p,
+h1,
+a {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 300;
+    color: white;
+}
+
+h1 {
+    font-size: calc(0.5rem + 2vw);
+}
+
+.loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #494e37;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+
+    .loading-image {
+        width: 10%;
+        height: auto;
+    }
+}
+
+.titel {
+    display: flex;
+    padding-left: 5%;
+    align-items: center;
+}
+
+.flex,
+.pin {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    
+}
+
+.flex {
+    justify-content: center;
+    gap: 50px;
+
+    h1 {
+        padding-left: 0;
+    }
+}
+
+.kaartje,
+.kaartje2 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    height: auto;
+}
+
+.kaartje {
+    z-index: 2;
+}
+
+.kaartje2 {
+    z-index: 1;
+}
+
+.container {
+    position: absolute;
+    top: 10%;
+    right: 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.vertical-line {
+    width: 3px;
+    height: 400px;
+    background-color: white;
+}
+
+.counter {
+    font-family: 'Oswald', sans-serif;
+    font-size: calc(0.2rem + 1vw);
+    color: white;
+}
+
+.postzegel {
+    max-width: 35%;
+    max-height: 35%;
+    min-width: 10%;
+    min-height: 10%;
+}
+
+.logo {
+    width: 80%;
+    height: auto;
+}
+
+.footer {
+    height: 100px;
+}
+
+
+.small {
+    display: none;
+}
+
+/* @media (max-width: 1200px) {
+    .flex {
+        gap: 30px;
+    }
+} */
+
+@media (max-width: 1000px) {
+    .flex {
+        width: 95vw;
+        padding-left: 2%;
+    }
+}
+
+@media (max-width: 768px) {
+    main {
+        display: none;
+    }
+
+    .small {
+        display: block;
+    }
+}
