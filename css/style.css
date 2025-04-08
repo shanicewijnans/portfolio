@@ -3,6 +3,11 @@
     -webkit-user-select: none;
 }
 
+html:has(dialog[open]) {
+    overflow-y: hidden;
+    scrollbar-gutter: stable;
+}
+
 body,
 html {
     overflow-x: hidden;
@@ -14,16 +19,50 @@ main {
     background-attachment: fixed;
 }
 
+dialog {
+    overflow: hidden;
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+dialog::backdrop {
+    transition: opacity 0.5s ease;
+    opacity: 1;
+}
+
+dialog[closing]::backdrop {
+    opacity: 0; /* Fade out the backdrop */
+}
+
 p,
 h1,
+h2,
+h3,
 a {
     font-family: 'Oswald', sans-serif;
     font-weight: 300;
+}
+
+h1,
+a {
     color: white;
+}
+
+a {
+    outline: none;
+    cursor: pointer;
 }
 
 h1 {
     font-size: calc(0.5rem + 2vw);
+}
+
+p,
+h2 {
+    color: black;
+    line-height: 1.25;
 }
 
 .loading {
@@ -58,7 +97,7 @@ h1 {
     display: flex;
     flex-direction: row;
     align-items: center;
-    
+
 }
 
 .flex {
@@ -75,7 +114,6 @@ h1 {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
     width: 50%;
     height: auto;
 }
@@ -97,18 +135,18 @@ h1 {
     justify-content: center;
     align-items: center;
     gap: 20px;
-}
 
-.vertical-line {
-    width: 3px;
-    height: 400px;
-    background-color: white;
-}
+    .vertical-line {
+        width: 3px;
+        height: 400px;
+        background-color: white;
+    }
 
-.counter {
-    font-family: 'Oswald', sans-serif;
-    font-size: calc(0.2rem + 1vw);
-    color: white;
+    .counter {
+        font-family: 'Oswald', sans-serif;
+        font-size: calc(0.2rem + 1vw);
+        color: white;
+    }
 }
 
 .postzegel {
@@ -116,27 +154,133 @@ h1 {
     max-height: 35%;
     min-width: 10%;
     min-height: 10%;
+    cursor: pointer;
+}
+.footer {
+    height: 100px;
+
+    .logo {
+        width: 80%;
+        height: auto;
+    }
 }
 
-.logo {
-    width: 80%;
+.envelop {
+    width: auto;
+    height: 80vh;
+}
+
+dialog h2,
+dialog h3,
+dialog img {
+    cursor: default;
+}
+
+.postzegelNieuw {
+    position: absolute;
+    top: 8%;
+    right: 6%;
+    width: 14%;
     height: auto;
 }
 
-.footer {
-    height: 100px;
+dialog p,
+dialog h2,
+dialog h3,
+.dialogImg,
+.content {
+    position: absolute;
 }
 
+dialog p {
+    width: 65%;
+    top: 10%;
+    left: 8%;
+    font-size: calc(0.6rem + 0.5vw);
+}
+
+dialog h2, dialog h3 {
+    font-size: calc(0.5rem + 0.5vw);
+}
+
+dialog a {
+    position: absolute;
+    top: 38%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: black;
+    font-weight: 500;
+    font-size: calc(1rem + 0.5vw);
+}
+
+.dialogImg {
+    width: 40%;
+    height: auto;
+    transform: translate(-50%, -50%);
+}
+
+.img1 {
+    top: 64%;
+    left: 28%;
+}
+
+.img2 {
+    top: 64%;
+    left: 72%;
+}
+
+.date {
+    right: 9%;
+    top: 31%;
+}
+
+.cacao .date {
+    right: 7.5%;
+    top: 31%;
+}
+
+.program {
+    left: 8%;
+    bottom: 7%;
+}
+
+.persoonlijk {
+    h3 {
+        font-weight: 600;
+    }
+
+    .h3Cafe {
+        top: 31%;
+        left: 18.5%;
+        transform: rotate(7deg);
+    }
+
+    .h2Cafe {
+        top: 35%;
+        left: 18%;
+        transform: rotate(7deg);
+    }
+
+    .h3Blender {
+        top: 32%;
+        left: 64%;
+        transform: rotate(357deg);
+    }
+
+    .h2Blender {
+        top: 36%;
+        left: 69%;
+        transform: rotate(357deg);
+    }
+
+    .img1, .img2 {
+        top: 58%;
+    }
+}
 
 .small {
     display: none;
 }
-
-/* @media (max-width: 1200px) {
-    .flex {
-        gap: 30px;
-    }
-} */
 
 @media (max-width: 1000px) {
     .flex {
@@ -151,6 +295,11 @@ h1 {
     }
 
     .small {
+        width: 100vw;
+        height: 100vh;
         display: block;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 }

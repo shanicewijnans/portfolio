@@ -1,7 +1,3 @@
-window.onbeforeunload = () => {
-    window.scrollTo(0, 0);
-};
-
 gsap.registerPlugin(ScrollTrigger);
 
 window.addEventListener("load", () => {
@@ -12,21 +8,27 @@ window.addEventListener("load", () => {
         "assets/doodlecode.png",
         "assets/cacao.png",
         "assets/persoonlijk.png",
-        "assets/storytree.png"
+        "assets/mycelium.png"
     ];
 
     const randomImage = images[Math.floor(Math.random() * images.length)];
     loadingImage.src = randomImage;
 
-    gsap.to(load, {
-        scale: 3,
-        opacity: 0,
-        duration: 2,
-        ease: "power2.inOut",
-        onComplete: () => {
-            load.style.display = "none";
-        }
-    });
+        gsap.to(load, {
+            scale: 3,
+            opacity: 0,
+            duration: 2,
+            delay: 0.5,
+            ease: "power2.inOut",
+            onComplete: () => {
+                load.style.display = "none";
+            }
+        });
+});
+
+gsap.set(".kaartje, .kaartje2", {
+    xPercent: -50,
+    yPercent: -50
 });
 
 const counter = document.querySelector(".counter");
@@ -65,7 +67,7 @@ ScrollTrigger.create({
     onLeaveBack: () => {
         const tl = gsap.timeline();
         tl.to(".kaartje2", {
-            y: -200,
+            y: 200,
             duration: 1,
             ease: "power2.inOut",
             opacity: 0,
@@ -100,11 +102,84 @@ gsap.from(".postzegel", {
         trigger: ".flex",
         start: "top 50%",
         end: "top 20%",
-        toggleActions: "play none none reverse",
+        toggleActions: "play none none reverse"
     }
 });
 
+document.querySelectorAll('.postzegel').forEach(postzegel => {
+    postzegel.addEventListener('mouseenter', () => {
+        gsap.to(postzegel, {
+            y: -10, // Lift the element slightly
+            duration: 0.3,
+            ease: "power3.out"
+        });
+    });
 
+    postzegel.addEventListener('mouseleave', () => {
+        gsap.to(postzegel, {
+            y: 0, // Return to original position
+            duration: 0.3,
+            ease: "power3.out"
+        });
+    });
+});
+
+document.querySelectorAll('.postzegel').forEach(postzegel => {
+    postzegel.addEventListener('click', () => {
+        const modalClass = postzegel.getAttribute('data-modal');
+        const dialog = document.querySelector(`dialog.${modalClass}`);
+        const envelop = dialog.querySelector('.envelop');
+        const postzegelNieuw = dialog.querySelector('.postzegelNieuw');
+
+        dialog.showModal();
+
+        document.addEventListener("DOMContentLoaded", () => {
+    const videos = document.querySelectorAll('video');
+    videos.forEach((video) => {
+        video.removeAttribute('autoplay');
+        video.pause();
+        video.currentTime = 0;
+    });
+});
+
+        gsap.from(dialog, {
+            x: -400,
+            opacity: 0,
+            duration: 1,
+            ease: "power3.out"
+        });
+
+        gsap.from(postzegelNieuw, {
+            scale: 5,
+            opacity: 0,
+            duration: 0.5,
+            ease: "power3.out",
+            delay: 1
+        });
+
+        dialog.addEventListener('click', (event) => {
+            if (!envelop.contains(event.target)) {
+                dialog.setAttribute('closing', '');
+                gsap.to(dialog, {
+                    x: 400,
+                    opacity: 0,
+                    duration: 1,
+                    ease: "power3.out",
+                    onComplete: () => {
+                        dialog.close();
+                        gsap.set(dialog, { x: 0, opacity: 1 });
+                    }
+                });
+            }
+        });
+    });
+});
+
+window.onbeforeunload = (event) => {
+    if (event.target.href.startsWith('mailto:')) {
+        return;
+    }
+};
 
 
 
