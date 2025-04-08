@@ -81,6 +81,7 @@ h2 {
     .loading-image {
         width: 10%;
         height: auto;
+        visibility: hidden;
     }
 }
 
@@ -156,6 +157,7 @@ h2 {
     min-height: 10%;
     cursor: pointer;
 }
+
 .footer {
     height: 100px;
 

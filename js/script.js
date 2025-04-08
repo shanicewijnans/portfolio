@@ -1,5 +1,6 @@
 gsap.registerPlugin(ScrollTrigger);
 
+// filepath: c:\Users\wijna\Documents\Communication & Multimedia Design\Portfolio\Portfolio website\js\script.js
 window.addEventListener("load", () => {
     const load = document.querySelector(".loading");
     const loadingImage = document.querySelector(".loading-image");
@@ -16,6 +17,7 @@ window.addEventListener("load", () => {
     loadingImage.src = randomImage;
 
     loadingImage.onload = () => {
+        loadingImage.style.visibility = "visible";
         gsap.to(loadingImage, {
             opacity: 1,
             duration: 1,
