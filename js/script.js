@@ -14,16 +14,21 @@ window.addEventListener("load", () => {
     const randomImage = images[Math.floor(Math.random() * images.length)];
     loadingImage.src = randomImage;
 
-        gsap.to(load, {
-            scale: 3,
-            opacity: 0,
-            duration: 2,
-            delay: 0.5,
-            ease: "power2.inOut",
-            onComplete: () => {
-                load.style.display = "none";
-            }
-        });
+    gsap.to(load, {
+        scale: 3,
+        opacity: 0,
+        duration: 3,
+        delay: 0.5,
+        ease: "power2.inOut",
+        onStart: () => {
+            loadingImage.onload = () => {
+                console.log("Image loaded, starting animation");
+            };
+        },
+        onComplete: () => {
+            load.style.display = "none";
+        }
+    });
 });
 
 gsap.set(".kaartje, .kaartje2", {
