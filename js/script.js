@@ -12,7 +12,17 @@ window.addEventListener("load", () => {
     ];
 
     const randomImage = images[Math.floor(Math.random() * images.length)];
+    loadingImage.style.opacity = 0;
     loadingImage.src = randomImage;
+
+    loadingImage.onload = () => {
+        gsap.to(loadingImage, {
+            opacity: 1,
+            duration: 1,
+            ease: "power2.inOut"
+        });
+        console.log("Image loaded, starting animation");
+    };
 
     gsap.to(load, {
         scale: 3,
@@ -20,11 +30,6 @@ window.addEventListener("load", () => {
         duration: 3,
         delay: 0.5,
         ease: "power2.inOut",
-        onStart: () => {
-            loadingImage.onload = () => {
-                console.log("Image loaded, starting animation");
-            };
-        },
         onComplete: () => {
             load.style.display = "none";
         }
