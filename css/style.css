@@ -246,6 +246,37 @@ dialog a {
     bottom: 7%;
 }
 
+video {
+    width: 70%;
+    height: 70%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 57%;
+    left: 44%;
+}
+
+.play {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 57%;
+    left: 44%;
+}
+
+.fullscreen {
+    width: 17px;
+    height: 17px;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    bottom: 18%;
+    right: 21%;
+}
+
+.play:hover, .fullscreen:hover {
+    cursor: pointer;
+}
+
 .persoonlijk {
     h3 {
         font-weight: 600;

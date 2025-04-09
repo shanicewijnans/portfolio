@@ -1,6 +1,5 @@
 gsap.registerPlugin(ScrollTrigger);
 
-// filepath: c:\Users\wijna\Documents\Communication & Multimedia Design\Portfolio\Portfolio website\js\script.js
 window.addEventListener("load", () => {
     const load = document.querySelector(".loading");
     const loadingImage = document.querySelector(".loading-image");
@@ -121,7 +120,7 @@ gsap.from(".postzegel", {
 document.querySelectorAll('.postzegel').forEach(postzegel => {
     postzegel.addEventListener('mouseenter', () => {
         gsap.to(postzegel, {
-            y: -10, // Lift the element slightly
+            y: -10,
             duration: 0.3,
             ease: "power3.out"
         });
@@ -129,7 +128,7 @@ document.querySelectorAll('.postzegel').forEach(postzegel => {
 
     postzegel.addEventListener('mouseleave', () => {
         gsap.to(postzegel, {
-            y: 0, // Return to original position
+            y: 0,
             duration: 0.3,
             ease: "power3.out"
         });
@@ -146,13 +145,13 @@ document.querySelectorAll('.postzegel').forEach(postzegel => {
         dialog.showModal();
 
         document.addEventListener("DOMContentLoaded", () => {
-    const videos = document.querySelectorAll('video');
-    videos.forEach((video) => {
-        video.removeAttribute('autoplay');
-        video.pause();
-        video.currentTime = 0;
-    });
-});
+            const videos = document.querySelectorAll('video');
+            videos.forEach((video) => {
+                video.removeAttribute('autoplay');
+                video.pause();
+                video.currentTime = 0;
+            });
+        });
 
         gsap.from(dialog, {
             x: -400,
@@ -192,6 +191,58 @@ window.onbeforeunload = (event) => {
         return;
     }
 };
+
+document.querySelectorAll('dialog').forEach(dialog => {
+    const video = dialog.querySelector('video');
+    const playButton = dialog.querySelector('.play');
+    const fullscreenButton = dialog.querySelector('.fullscreen');
+
+    if (video) {
+        video.addEventListener('click', (event) => {
+            event.stopPropagation(); 
+            if (video.paused) {
+                video.play();
+                playButton.style.display = "none"; 
+            } else {
+                video.pause();
+                playButton.style.display = "block"; 
+            }
+        });
+
+        dialog.addEventListener('close', () => {
+            video.pause();
+            video.currentTime = 0; 
+            playButton.style.display = "block";
+        });
+    }
+
+    if (video && playButton) {
+        playButton.addEventListener('click', (event) => {
+            event.stopPropagation(); 
+            if (video.paused) {
+                video.play();
+                playButton.style.display = "none"; 
+            } else {
+                video.pause();
+                playButton.style.display = "block";
+            }
+        });
+    }
+
+    if (video && fullscreenButton) {
+        fullscreenButton.addEventListener('click', (event) => {
+            event.stopPropagation(); 
+            if (video.requestFullscreen) {
+                video.requestFullscreen();
+            } else if (video.webkitRequestFullscreen) {
+                video.webkitRequestFullscreen(); 
+            } else if (video.msRequestFullscreen) {
+                video.msRequestFullscreen();
+            }
+        });
+    }
+});
+
 
 
 
