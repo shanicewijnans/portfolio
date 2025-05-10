@@ -7,7 +7,6 @@ window.addEventListener("load", () => {
     const images = [
         "assets/doodlecode.png",
         "assets/cacao.png",
-        "assets/persoonlijk.png",
         "assets/mycelium.png"
     ];
 
