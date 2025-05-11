@@ -7,7 +7,8 @@ window.addEventListener("load", () => {
     const images = [
         "assets/doodlecode.png",
         "assets/cacao.png",
-        "assets/mycelium.png"
+        "assets/mycelium.png",
+        "assets/storytree.png"
     ];
 
     const randomImage = images[Math.floor(Math.random() * images.length)];
@@ -140,8 +141,20 @@ document.querySelectorAll('.postzegel').forEach(postzegel => {
         const dialog = document.querySelector(`dialog.${modalClass}`);
         const envelop = dialog.querySelector('.envelop');
         const postzegelNieuw = dialog.querySelector('.postzegelNieuw');
+        const images = dialog.querySelectorAll('img');
 
         dialog.showModal();
+
+        if (scrollContainer) {
+            const percentage = 50;
+            scrollContainer.scrollLeft = (scrollContainer.scrollWidth - scrollContainer.clientWidth) * (percentage / 100);
+        }
+
+        images.forEach(image => {
+            image.addEventListener('click', (event) => {
+                event.stopPropagation();
+            });
+        });
 
         document.addEventListener("DOMContentLoaded", () => {
             const videos = document.querySelectorAll('video');
@@ -198,29 +211,29 @@ document.querySelectorAll('dialog').forEach(dialog => {
 
     if (video) {
         video.addEventListener('click', (event) => {
-            event.stopPropagation(); 
+            event.stopPropagation();
             if (video.paused) {
                 video.play();
-                playButton.style.display = "none"; 
+                playButton.style.display = "none";
             } else {
                 video.pause();
-                playButton.style.display = "block"; 
+                playButton.style.display = "block";
             }
         });
 
         dialog.addEventListener('close', () => {
             video.pause();
-            video.currentTime = 0; 
+            video.currentTime = 0;
             playButton.style.display = "block";
         });
     }
 
     if (video && playButton) {
         playButton.addEventListener('click', (event) => {
-            event.stopPropagation(); 
+            event.stopPropagation();
             if (video.paused) {
                 video.play();
-                playButton.style.display = "none"; 
+                playButton.style.display = "none";
             } else {
                 video.pause();
                 playButton.style.display = "block";
@@ -230,19 +243,21 @@ document.querySelectorAll('dialog').forEach(dialog => {
 
     if (video && fullscreenButton) {
         fullscreenButton.addEventListener('click', (event) => {
-            event.stopPropagation(); 
+            event.stopPropagation();
             if (video.requestFullscreen) {
                 video.requestFullscreen();
             } else if (video.webkitRequestFullscreen) {
-                video.webkitRequestFullscreen(); 
+                video.webkitRequestFullscreen();
             } else if (video.msRequestFullscreen) {
                 video.msRequestFullscreen();
             }
         });
     }
+})
+
+const scrollContainer = document.querySelector('.scroll-container');
+
+scrollContainer.addEventListener('wheel', (event) => {
+    event.preventDefault();
+    scrollContainer.scrollLeft += event.deltaX || event.deltaY;
 });
-
-
-
-
-

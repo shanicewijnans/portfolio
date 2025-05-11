@@ -1,6 +1,7 @@
 * {
     user-select: none;
     -webkit-user-select: none;
+    scrollbar-color: #ccc transparent;
 }
 
 html:has(dialog[open]) {
@@ -20,11 +21,11 @@ main {
 }
 
 dialog {
-    overflow: hidden;
     background: none;
     border: none;
     outline: none;
     cursor: pointer;
+    overflow: visible;
 }
 
 dialog::backdrop {
@@ -33,7 +34,7 @@ dialog::backdrop {
 }
 
 dialog[closing]::backdrop {
-    opacity: 0; /* Fade out the backdrop */
+    opacity: 0;
 }
 
 p,
@@ -43,6 +44,8 @@ h3,
 a {
     font-family: 'Oswald', sans-serif;
     font-weight: 300;
+    cursor: default;
+
 }
 
 h1,
@@ -184,6 +187,7 @@ dialog img {
     right: 6%;
     width: 14%;
     height: auto;
+    z-index: 5;
 }
 
 dialog p,
@@ -195,13 +199,14 @@ dialog h3,
 }
 
 dialog p {
-    width: 65%;
+    width: calc(65% - 20px);
     top: 10%;
     left: 8%;
-    font-size: calc(0.6rem + 0.5vw);
+    font-size: calc(0.6rem + 0.4vw);
 }
 
-dialog h2, dialog h3 {
+dialog h2,
+dialog h3 {
     font-size: calc(0.5rem + 0.5vw);
 }
 
@@ -273,49 +278,112 @@ video {
     right: 21%;
 }
 
-.play:hover, .fullscreen:hover {
+.play:hover,
+.fullscreen:hover {
     cursor: pointer;
 }
 
-.persoonlijk {
-    h3 {
-        font-weight: 600;
+.scroll-container {
+    display: flex;
+    gap: 20px;
+    outline: none;
+    overflow-x: auto;
+    overflow-y: hidden;
+    max-height: 80vh;
+    scrollbar-color: transparent;
+    padding-bottom: 30px;
+
+    .postzegelNieuw {
+        right: 4%;
+        top: 6%;
+    }
+}
+
+.fotografie,
+.mograph,
+.graphic {
+    position: relative;
+    width: fit-content;
+    height: auto;
+}
+
+.blender {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    width: 30%;
+}
+
+.ball {
+    position: absolute;
+    top: 45%;
+    left: 25%;
+    max-width: 200px;
+    max-height: 200px;
+}
+
+.playBtn2 {
+    width: 30px;
+    height: 30px;
+    top: 45%;
+    left: 25%;
+}
+
+.fotos {
+    position: absolute;
+    top: 30%;
+    left: 13%;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    width: 65%;
+
+    img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+.graphics {
+    position: absolute;
+    z-index: 2;
+    position: absolute;
+    top: 40%;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    .poster {
+        width: 25%;
+        height: auto;
     }
 
-    .h3Cafe {
-        top: 31%;
-        left: 18.5%;
-        transform: rotate(7deg);
+    .brand {
+        width: 30%;
+        height: 30%;
     }
+}
 
-    .h2Cafe {
-        top: 35%;
-        left: 18%;
-        transform: rotate(7deg);
-    }
+.poster {
+    transition: transform 0.3s ease-in-out;
+    cursor: zoom-in;
+    z-index: 5;
+    transform-origin: center center;
+}
 
-    .h3Blender {
-        top: 32%;
-        left: 64%;
-        transform: rotate(357deg);
-    }
-
-    .h2Blender {
-        top: 36%;
-        left: 69%;
-        transform: rotate(357deg);
-    }
-
-    .img1, .img2 {
-        top: 58%;
-    }
+.poster:hover {
+    transform: scale(1.7) translate(-10%, -25%);
+    z-index: 10;
 }
 
 .small {
     display: none;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1450px) {
     .flex {
         width: 95vw;
         padding-left: 2%;
