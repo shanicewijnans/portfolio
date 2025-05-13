@@ -309,24 +309,25 @@ video {
 
 .blender {
     position: absolute;
-    top: 30%;
-    left: 50%;
+    top: 65%;
+    left: 10%;
     width: 30%;
 }
 
 .ball {
     position: absolute;
-    top: 45%;
-    left: 25%;
+    top: 30%;
+    left: 10%;
     max-width: 200px;
     max-height: 200px;
 }
 
-.playBtn2 {
-    width: 30px;
-    height: 30px;
+.walk {
+    position: absolute;
     top: 45%;
-    left: 25%;
+    left: 55%;
+    max-width: 200px;
+    max-height: 200px;
 }
 
 .fotos {
